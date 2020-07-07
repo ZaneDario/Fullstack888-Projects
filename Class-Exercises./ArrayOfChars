@@ -1,0 +1,11 @@
+public class Variables {
+    public static void main(String[] args) {
+        char[] letters = {'D', 'a', 'r', 'í', 'o'};
+        String name = new String();
+        for(char c: letters){
+            name += c;
+        }
+
+        System.out.println("Hello " + name);
+    }
+}
