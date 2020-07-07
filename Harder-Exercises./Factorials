@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Factorials {
+    Scanner s = new Scanner(System.in);
+    int result = 1;
+
+    public static void main(String[] args) {
+        new Factorials().run();
+    }
+
+    void run()
+    {
+        System.out.println("Type an Integer.");
+        int number = CheckInteger(s.nextLine());
+        Factorial(number);
+    }
+    void Factorial(int num)
+    {
+        for(int i = 1; i < num; i++)
+        {
+            result = i*result;
+        }
+
+        System.out.println("Factorial of " + num + " is " + result);
+    }
+    
+    public int CheckInteger(String text)
+    {
+        try
+        {
+                return Integer.parseInt(text);
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Introduce an Integer, please.");
+            return CheckInteger(s.nextLine());
+        }
+    }
+}
