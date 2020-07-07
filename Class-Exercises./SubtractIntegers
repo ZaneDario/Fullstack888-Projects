@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Subtract {
+    Scanner s = new Scanner(System.in);
+    int number1;
+    int number2;
+    int result;
+
+    public static void main(String[] args) {
+        new Subtract().run();
+    }
+
+    public void run()
+    {
+        System.out.println("Give me a number:");
+        number1 = s.nextInt();
+        System.out.println("Give me another one:");
+        number2 = s.nextInt();
+        result = number1 - number2;
+
+        System.out.println("The sum is " + result);
+    }
+}
