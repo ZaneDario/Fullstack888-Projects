@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class CalculateVolumes {
+    Scanner s = new Scanner(System.in);
+    String[] numbersAsText = new String[3];
+    int[] numbersAsInt = new int[3];
+
+    public static void main(String[] args)
+    {
+        System.out.println("Give me three numbers separated with spaces (e.g. 7 12 9) to get the volume of a prism in cm.");
+        new CalculateVolumes().StartNewCalculation();
+    }
+    
+    void StartNewCalculation()
+    {
+        CheckInputs(s.nextLine());
+
+        TextToInt(numbersAsText);
+
+        PrismVolume(numbersAsInt[0], numbersAsInt[1], numbersAsInt[2]);
+    }
+
+    void CheckInputs(String text)
+    {
+        numbersAsText = text.split(" ");
+
+        while(numbersAsText.length != 3)
+        {
+            System.out.println("Incorrect input format. You need three numbers. (e.g. 7 12 9)");
+            CheckInputs(s.nextLine());
+        }
+    }
+
+    void TextToInt(String[] text)
+    {
+        try
+        {
+            for (int i = 0; i < text.length; i++)
+            {
+                numbersAsInt[i] = Integer.parseInt(numbersAsText[i]);
+            }
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Incorrect input format. Only Integers, please. (e.g. 7 12 9)");
+            StartNewCalculation();
+        }
+    }
+
+    void PrismVolume(int x, int y, int z)
+    {
+        int volume = x*y*z;
+        System.out.println("Volume = "+ volume +"cm");
+        System.exit(0);
+    }
+}
