@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class ByteTest {
+    public static void main(String[] args) {
+        byte number = 0;
+        Scanner s = new Scanner(System.in);
+        while(true)
+        {
+            number+=5;
+            System.out.println(number);
+
+            if(s.nextLine().equals("STOP"))
+            {
+                System.exit(0);
+            }
+        }
+    }
+}
