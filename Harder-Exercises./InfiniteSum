@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class Addition {
+    Scanner s = new Scanner(System.in);
+    int number;
+    int result;
+
+    public static void main(String[] args) {
+        new Addition().run();
+    }
+
+    public void run() {
+        System.out.println("Give me a number:");
+        number = CheckInteger();
+        result = number;
+
+        System.out.println("Give me another one:");
+        number = CheckInteger();
+
+        result += number;
+
+        System.out.println("The sum is " + result);
+        KeepAdding();
+    }
+
+    public void KeepAdding()
+    {
+        System.out.println("I can keep working. Type a new number or type STOP to close this app.");
+        number = CheckInteger();
+        result += number;
+        System.out.println("The new result is " +result);
+        KeepAdding();
+    }
+
+    public int CheckInteger()
+    {
+        try{
+            String data = s.nextLine();
+            if(data.equals("STOP"))
+            {
+                System.exit(0);
+                return 0;
+            }
+            else
+                return Integer.parseInt(data);
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Introduce an Integer, please.");
+            return CheckInteger();
+        }
+    }
+}
