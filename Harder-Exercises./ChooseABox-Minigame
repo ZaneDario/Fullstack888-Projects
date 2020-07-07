@@ -1,0 +1,46 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class ChooseABox {
+
+    Scanner s = new Scanner(System.in);
+    Random r = new Random();
+    int[] boxes = {0,0,0};
+
+    public static void main(String[] args) {
+        new ChooseABox().Play();
+    }
+
+    void Play()
+    {
+       int n = r.nextInt(3);
+       boxes[n] = 1;
+
+        System.out.println("Choose a box: 1, 2 or 3. Good Luck.");
+        int choice = CheckInteger(s.nextLine());
+
+        if(boxes[choice] == 1)
+            System.out.println("You got the prize!!");
+        else
+            System.out.println("I'm sorry. That box is empty...");
+
+        System.out.println("Do you wanna try again?   Y/N   ");
+        String answer = s.next();
+
+        if(answer.equals("Y") || answer.equals("y"))
+            Play();
+
+    }
+
+    public int CheckInteger(String text)
+    {
+        try
+        {
+            return Integer.parseInt(text);
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("You have three boxes: 1, 2 and 3.");
+            return CheckInteger(s.nextLine());
+        }
+    }
+}
