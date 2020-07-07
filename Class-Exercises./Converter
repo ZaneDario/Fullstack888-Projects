@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Converter {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Press 1 to convert from centimeters into inches, or press 2 to do the opposite.");
+        if(s.nextInt() == 1)
+        {
+            System.out.println("Give me a number in cm.");
+            int number = s.nextInt();
+            System.out.println("Your number turned into inches is " + number*2.54f);
+            System.out.println("Bye, bye!!");
+        }
+        else
+        {
+            System.out.println("Give me a number in inches.");
+            float inch = s.nextFloat();
+            float cm;
+            cm = inch /2.54f;
+            System.out.println("Your number turned into centimeters is " + cm);
+            System.out.println("Bye, bye!!");
+        }
+    }
+}
