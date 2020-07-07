@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class NumberProperties {
+    Scanner s = new Scanner(System.in);
+    boolean even = false;
+    boolean underTen= false;
+    boolean divisibleByFive= false;
+
+
+    public static void main(String[] args) {
+        new NumberProperties().run();
+    }
+    public void run()
+    {
+        System.out.println("Give me an Integer.");
+        CheckProperties(CheckInteger());
+        GenerateText(even, underTen, divisibleByFive);
+        Repeat();
+    }
+    public int CheckInteger()
+    {
+        try{
+            String data = s.nextLine();
+            if(data.equals("STOP"))
+            {
+                System.exit(0);
+                return 0;
+            }
+            else
+                return Integer.parseInt(data);
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Introduce an Integer, please.");
+            return CheckInteger();
+        }
+    }
+    public void CheckProperties(int number)
+    {
+        even = number % 2 == 0 ? true : false;
+        divisibleByFive = number % 5 == 0 ? false : true;
+        underTen = number < 10 ? false : true;
+
+    }
+    public void GenerateText(boolean even, boolean divByFive, boolean smallerTen)
+    {
+        if(even)
+            System.out.println("Your number is even.");
+        if(divByFive)
+            System.out.println("Your number is divisible by five.");
+        if(smallerTen)
+            System.out.println("Your number is smaller than ten.");
+    }
+    public void Repeat()
+    {
+        System.out.println("            ");
+        System.out.println("You can type STOP to stop this process.");
+        run();
+    }
+}
