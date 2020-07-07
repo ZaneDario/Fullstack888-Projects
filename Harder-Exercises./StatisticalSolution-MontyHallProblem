@@ -1,0 +1,42 @@
+import java.util.Random;
+
+public class MontyHallProblem {
+
+    Random r = new Random();
+    int[] prizes = { 0 , 0 , 1 };
+    int prizeOne = 0;
+    int prizeTwo = 0;
+    int tries = 10000;
+
+    public static void main(String[] args) {
+        new MontyHallProblem().run();
+    }
+
+    void run()
+    {
+        for(int i = 0; i < tries; i++)
+        {
+            int choice = r.nextInt(3);
+            int swapChoice = 0;
+
+            if(choice == 0)
+                swapChoice = 2;
+
+            if(choice == 1)
+                swapChoice = 2;
+
+            if(choice == 2)
+                swapChoice = 1;
+
+            prizeOne += prizes[swapChoice];
+
+            choice = r.nextInt(3);
+            prizeTwo += prizes[choice];
+        }
+
+        System.out.println("If you swap, you win " +
+                ((float)prizeOne/tries*100) + "% of the times.");
+        System.out.println("If you choose not to swap, you" +
+                "get the prize the "+((float)prizeTwo/tries*100)+"% of the times.");
+    }
+}
