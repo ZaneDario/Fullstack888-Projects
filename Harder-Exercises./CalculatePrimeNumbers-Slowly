@@ -5,9 +5,9 @@ public class PrimeNumbers {
     int max = 100000;
 
     public static void main(String[] args) {
-        new PrimeNumbers().run();
+        new PrimeNumbers().Calculate();
     }
-    public void run()
+    public void Calculate()
     {
         ShowSlowly();
     }
