@@ -7,10 +7,10 @@ public class Subtract {
     int result;
 
     public static void main(String[] args) {
-        new Subtract().run();
+        new Subtract().SubtractNumbers();
     }
 
-    public void run()
+    public void SubtractNumbers()
     {
         System.out.println("Give me a number:");
         number1 = s.nextInt();
