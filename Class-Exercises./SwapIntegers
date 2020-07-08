@@ -4,14 +4,9 @@ public class SwapIntegers {
     Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-        new SwapIntegers().run();
-    }
-
-    void run()
-    {
-        UsingTwoVariables();   //<---- Use only one of these.
-        
-        //UsingThreeVariables();
+    
+        new SwapIntegers().UsingTwoVariables();  <--- Use only one.
+        //new SwapIntegers().UsingThreeVariables();
     }
     
     void UsingTwoVariables()
