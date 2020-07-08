@@ -7,10 +7,10 @@ public class Taxes {
 
     public static void main(String[] args)
     {
-        new Taxes().run();
+        new Taxes().StartProgramme();
     }
 
-    void run()
+    void StartProgramme()
     {
         System.out.println("Declare your incomes.");
         int incomes = s.nextInt();
