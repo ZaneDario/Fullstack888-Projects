@@ -6,10 +6,10 @@ public class Addition {
     int result;
 
     public static void main(String[] args) {
-        new Addition().run();
+        new Addition().AskForNumbers();
     }
 
-    public void run() {
+    public void AskForNumbers() {
         System.out.println("Give me a number:");
         number = CheckInteger();
         result = number;
