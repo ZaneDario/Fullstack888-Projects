@@ -19,7 +19,7 @@ public class Taxes {
 
         for (int i = 0; i < quotient+1; i++)
         {
-            if(i>4){ i=4; quotient--; }
+            if(i>4){ i=4; quotient--; } //If you reach four or more iterations means that your incomes are in the maximum rating.
 
             if(i == quotient)
                 tax += i * 0.1f * (incomes%cap);
