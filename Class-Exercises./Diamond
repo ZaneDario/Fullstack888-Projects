@@ -5,9 +5,9 @@ public class Diamond {
     Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-        new Diamond().run();
+        new Diamond().CreateDiamond();
     }
-    void run()
+    void CreateDiamond()
     {
         System.out.println("Diamond dimensions?");
         int num = s.nextInt();
