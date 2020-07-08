@@ -5,9 +5,11 @@ public class InverseNumber {
     Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-        new InverseNumber().Invert();
+        new InverseNumber().InvertEasy();      <----- Use one of these.
+        //new InverseNumber().InvertWithMaths();
     }
-    void Invert()
+    
+    void InvertEasy()
     {
         System.out.println("Type a three digits number.");
         String numAsText = s.next();
@@ -22,5 +24,21 @@ public class InverseNumber {
          }
          else
              System.out.println("You do not even know how to count.");
+    }
+    
+    void InvertWithMaths()
+    {
+        System.out.println("Type a three digits number.");
+        int num = s.nextInt();
+
+        int[] numbers = new int[3];
+        numbers[0] = num/100;
+        numbers[1] = (num - numbers[0]*100) / 10;
+        numbers[2] = num - numbers[0]*100 - numbers[1]*10;
+
+        for (int i = numbers.length-1; i >= 0 ; i--)
+        {
+            System.out.print(numbers[i]);
+        }
     }
 }
