@@ -8,9 +8,9 @@ public class NumberProperties {
 
 
     public static void main(String[] args) {
-        new NumberProperties().run();
+        new NumberProperties().StartProgramme();
     }
-    public void run()
+    public void StartProgramme()
     {
         System.out.println("Give me an Integer.");
         CheckProperties(CheckInteger());
