@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class InverseNumber {
+
+    Scanner s = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        new InverseNumber().Invert();
+    }
+    void Invert()
+    {
+        System.out.println("Type a three digits number.");
+        String numAsText = s.next();
+
+         if(numAsText.length() == 3)
+         {
+             String[] num = numAsText.split("");
+             for(int i = num.length; i > 0; i--)
+             {
+                 System.out.print(num[i-1]);
+             }
+         }
+         else
+             System.out.println("You do not even know how to count.");
+    }
+}
