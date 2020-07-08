@@ -7,9 +7,9 @@ public class PrimeNumbers {
     boolean prime = true;
 
     public static void main(String[] args) {
-        new PrimeNumbers().run();
+        new PrimeNumbers().Calculate();
     }
-    public void run()
+    public void Calculate()
     {
         for (int number = 1; number < 100000; number++)
         {
