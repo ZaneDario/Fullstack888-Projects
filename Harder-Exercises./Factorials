@@ -5,10 +5,10 @@ public class Factorials {
     int result = 1;
 
     public static void main(String[] args) {
-        new Factorials().run();
+        new Factorials().Calculate();
     }
 
-    void run()
+    void Calculate()
     {
         System.out.println("Type an Integer.");
         int number = CheckInteger(s.nextLine());
