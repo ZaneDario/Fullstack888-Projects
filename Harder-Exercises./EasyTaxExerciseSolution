@@ -2,29 +2,29 @@ import java.util.Scanner;
 
 public class Taxes {
 
-    Scanner s = new Scanner(System.in);
-    int cap = 20000;
+    Scanner s = new Scanner(System.in);     //Declaramos el escaner.
+    int cap = 20000;                        //20000 es el límite entre cada grupo.
 
     public static void main(String[] args)
     {
-        new Taxes().StartProgramme();
+        new Taxes().StartProgramme();           //Le decimos que ejecute el código dentro de "StartProgramme()".
     }
 
     void StartProgramme()
     {
         System.out.println("Declare your incomes.");
-        int incomes = s.nextInt();
-        float tax = 0;
-        int quotient = incomes/cap;
+        int incomes = s.nextInt();                          //En este ejercicio en concreto NO compruebo que el usuario introduce los datos correctamente. Me daba pereza.
+        float tax = 0;                                      //Esta variable va a ir acumulando lo que tienes que pagar.
+        int quotient = incomes/cap;                         //Dividiendo tus ingresos entre la barrera de cada grupo, obtienes cuantos grupos por encima del primero estás.
 
-        for (int i = 0; i < quotient+1; i++)
+        for (int i = 0; i < quotient+1; i++)            //Quieres repetir este bucle tantas veces como grupos por encima estés.
         {
-            if(i>4){ i=4; quotient--; } //If you reach four or more iterations means that your incomes are in the maximum rating.
+            if(i>4){ i=4; quotient--; }             //Cuatro o más iteracciones significas que te pasas del último grupo, y por ende sigues pagando el mismo % que ese grupo.
 
             if(i == quotient)
-                tax += i * 0.1f * (incomes%cap);
+                tax += i * 0.1f * (incomes%cap);        //Cuando hayas llegado al grupo al que correspondes, haces el cálculo con el dinero que te sobra.
             else
-                tax += i * 0.1f * cap;
+                tax += i * 0.1f * cap;              //Mientras no llegues a tu grupo, se va acumulando lo que pagarías en grupos inferiores.
         }
 
         System.out.println("You have to pay " + tax + "€. \n" +
