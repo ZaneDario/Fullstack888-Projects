@@ -1,37 +1,35 @@
-import java.util.ArrayList;
-import java.lang.Integer;
+import java.util.ArrayList;     //Java nos pide importar esto al intentar crear una lisgta, así que le hacemos caso,
+import java.lang.Integer;       //que java es muy sabio.
 
 public class PrimeNumbers {
 
-    ArrayList<Integer> primes = new ArrayList<>();
-    boolean prime = true;
-
+    ArrayList<Integer> primes = new ArrayList<>();  //Creamos una lista que va a guardar cada número primo que obtengamos.
+    boolean prime = true;                           //A cada número le otorgamos la presunción de inocencia. 
+                                                    //Será primo hasta que se demuestre lo contrario.
     public static void main(String[] args) {
-        new PrimeNumbers().Calculate();
+        new PrimeNumbers().Calculate();             //Aquí le decimos que ejecute el código que hay dentro de "Calculate()".
     }
     public void Calculate()
     {
-        for (int number = 1; number < 100000; number++)
+        for (int number = 1; number < 100000; number++) //Va a probar cada número desde  hasta 100000.
         {
-            ShowFast(number);
-        }
-    }
-
-    void ShowFast(int number)
-    {
-        for (int i : primes)
-        {
-            if (i != 1 && number != i && number % i == 0) {
-                prime = false;
+            for (int i : primes)                        //Le decimos que, de uno en uno, coja cada número que 
+            {                                           //hay en la lista que se va a ir creando de números primos.
+                if (i != 1 && number != i && number % i == 0)   //Si el número no es divisible por ningún número que hay en la lista de primos,
+                {                                               //aunque sea divisible por uno y por sí mismo, no entrará.
+                    prime = false;                              //Si el número entra, significa que se ha podido dividir, así que ya sabemos que no es primo.
+                    break;                                      //Con esto le decimos que ya no compruebe los demás. Si se puede dividir por cualquiera
+                }                                               //ya sabemos que no es primo, y no nos interesa seguir comprobando el resto de sus divisores.
             }
         }
 
-        if(prime)
+        if(prime)                                               //Si llegados a este punto no ha cambiado el boolean, sabemos que este número es primo.
         {
-            primes.add(number);
+            primes.add(number);                                 //Lo añadimos a la lista.
             System.out.println(number);
         }
 
-        prime = true;
-    }  
+        prime = true;                                           //Por si acaso este número nos ha cambiado a "falso" el booleano, lo volvemos a poner a "true"  
+    }                                                           //para otorgarle al siguiente número su presunción de inocencia. FIN.
+               
 }
