@@ -32,4 +32,4 @@ public class PrimeNumbers {
         prime = true;                                           //Por si acaso este número nos ha cambiado a "falso" el booleano, lo volvemos a poner a "true"  
     }                                                           //para otorgarle al siguiente número su presunción de inocencia. FIN.
                
-}
+} 
