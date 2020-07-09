@@ -1,52 +1,52 @@
 import java.util.Scanner;
 
 public class Addition {
-    Scanner s = new Scanner(System.in);
-    int number;
-    int result;
+    Scanner s = new Scanner(System.in);     //Damos nombre al escaner.
+    int number;                             //Este número va a guardar lo que el usuario escriba.
+    int result;                             //Este valor va a ir sumando cada nuevo número y cambiando su valor.
 
     public static void main(String[] args) {
-        new Addition().AskForNumbers();
+        new Addition().AskForNumbers();         //Le decimos que ejecute el código que hay en "AskForNumbers()".
     }
 
     public void AskForNumbers() {
-        System.out.println("Give me a number:");
-        number = CheckInteger();
-        result = number;
+        System.out.println("Give me a number:");        //Pedimos un número.
+        number = CheckInteger();                        //number tendrá el valor de CheckInteger(), vamos abajo a ver como funciona.
+        result = number;                                //El resultado vale lo mismo que el primer valor.
 
         System.out.println("Give me another one:");
-        number = CheckInteger();
+        number = CheckInteger();    
 
-        result += number;
+        result += number;                               //Al resultado le sumamos el segundo valor.
 
-        System.out.println("The sum is " + result);
-        KeepAdding();
+        System.out.println("The sum is " + result);     //Mostramos lo que llevamos acumulado.
+        KeepAdding();                                   //Ejecutamos el código que hay dentro de "KeepAdding()".
     }
 
-    public void KeepAdding()
+    void KeepAdding()       //KeepAdding() está declarado como void, así que no necesita transformarse en nada.
     {
         System.out.println("I can keep working. Type a new number or type STOP to close this app.");
-        number = CheckInteger();
-        result += number;
+        number = CheckInteger();        //Pedimos una nueva entrada por consola y vamos a asegurarnos de que es un entero o la palabra STOP.
+        result += number;               //Si se cumple, seguimos acumulando sumas.
         System.out.println("The new result is " +result);
-        KeepAdding();
+        KeepAdding();                           //Y repetimos este proceso.
     }
 
-    public int CheckInteger()
+    int CheckInteger()      //CheckInteger está declarado como un "int", así que al final del proceso tendrá que tener valor de "int"
     {
         try{
-            String data = s.nextLine();
-            if(data.equals("STOP"))
+            String data = s.nextLine();     //Aquí leemos lo que nos escriba el usuario en consola.
+            if(data.equals("STOP"))         //Si nos escribe STOP, pararemos la aplicación, porque sino estaríamos pidiéndole números eternamente.
             {
                 System.exit(0);
                 return 0;
             }
             else
-                return Integer.parseInt(data);
-        }
+                return Integer.parseInt(data);      //Si el usuario escribe cualquier otra cosa, comprobaremos si se puede transformar a "int"
+        }                                           //y si se puede, CheckInteger() obtendrá este valor.
         catch(NumberFormatException ex) {
-            System.out.println("Introduce an Integer, please.");
-            return CheckInteger();
-        }
+            System.out.println("Introduce an Integer, please.");    //Si no se puede transformar a "int" nos dará un error, e iremos a este trozo de código.
+            return CheckInteger();                                 //Aquí estamos repitiendo este proceso todo el rato hasta que CheckInteger salga siendo un "int"
+        }                                                           //Volvemos arriba.
     }
 }
