@@ -46,4 +46,4 @@ public class ProductBySum {
             return CheckInteger(s.next());                          //Y va a seguir a sí hasta que el propio CheckInteger() "se transforme" en un número entero.
         }                                                           //Volvemos arriba.
     }
-}
+} 
