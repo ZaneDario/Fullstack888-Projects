@@ -1,35 +1,30 @@
 public class PrimeNumbers {
 
-    int number = 1;
-    boolean prime = true;
-    int max = 100000;
+    boolean prime = true;    //Un número es primo hasta que se demuestre lo contrario.
+    int max = 100000;       //Número máximo de iteracciones.
 
     public static void main(String[] args) {
-        new PrimeNumbers().Calculate();
-    }
-    public void Calculate()
-    {
-        ShowSlowly();
+        new PrimeNumbers().ShowSlowly();         //Esto nos lleva a ejecutar el código dentro de "ShowSlowly()".
     }
 
     void ShowSlowly()
     {
-        for(int i = 1; i < max;i++)
+        for(int i = 1; i < max;i++)         //Cada vuelta que da, comprueba el siguiente número.
         {
-            for(int j = 1; j < max;j++)
-            {
-                if(j < i)
+            for(int j = 1; j < max;j++)     //Este bucle termina cada vez que su valor es igual al del bucle de arriba,
+            {                               //porque el valor de este bucle va a dividir al número de arriba, y no nos interesa
+                if(j < i)                   //que sea mayor, pues ya sabemos que no se podrá dividir.
                 {
-                    if(j != 1 && i%j==0)
-                        prime = false;
+                    if(j != 1 && i%j==0)    //Si un número es divisible por alguno menor que él, 
+                        prime = false;      //ya sabemos que no es primo.
                 }
                 else
-                    break;
+                    break;                  //Si el número no entra nunca en la condición de arriba, deducirmos que será primo.
             }
 
-            if(prime)
+            if(prime)                       //Si ha pasado la prueba sin entrar al if, seguirá siendo primo, y lo imprimimos.
                 System.out.println(i);
-            else
+            else                            //Si ha tenido la desgracia de entrar al if, el boolean "prime" ahora será false, y quedará excluido.
                 prime = true;
         }
     }
