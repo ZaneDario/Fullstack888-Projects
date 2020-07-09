@@ -1,0 +1,45 @@
+import java.util.Random;
+
+public class FiveHundredRandomValues {
+    int[] randoms1 = new int[100];      //Creamos un Array de 100 elementos.
+    int[] randoms2 = new int[100];      //Creamos otro.
+    int[] result = new int[100];        //Creamos otro más que guardará la suma de los valores que estén en la misma posición tanto del primer como del segundo array.
+    Random r = new Random();          //Damos nombre a lo que va a generar números aleatorios.
+
+    public static void main(String[] args) {
+new FiveHundredRandomValues().AssignValues();   //Ejecutamos el código dentro de "AssignValues()".
+    }
+
+    void AssignValues()
+    {
+        for (int i = 0; i<result.length; i++)   //En este bucle damos valores aleatorios a cada posición del Array, y ya de paso las sumamos y 
+        {                                       //lo guardamos en el Array "result".
+            randoms1[i] = r.nextInt(500);       
+            randoms2[i] = r.nextInt(500);           //Números aleatorios entre 0 hy 499.
+            result[i] = randoms1[i] + randoms2[i];
+        }
+
+        int value = 999;                        //Ningún resultado va a ser mayor de 998, así que esto nos sirve como tope.
+        for (int i = 0; i< result.length ; i++)   //Queremos mueva de sitio cada número del Array.
+        {
+            int pos = 0;
+
+            for(int j = i; j < result.length ; j++)   //Este bucle sirve para que compare cada número de la lista que no esté ordenado.
+            {                                             //Cuando el primer bucle termine su primera iteracción, habrá un número ordenado, así que este
+                                                          //se saltará los números que ay estén colocados.
+                                                          
+                if(result[j] < value)                     //Cuando un número sea menor que "value", "value" pasa a ser ese número.
+                {                                         //Tras haber comprobado cada número, value tendrá el valor del menor de todos los que ha comprobado.
+                    value = result[j];
+                    pos = j;                              //El número que vamos a mover de sitio estaba en la posición j. Ese valor lo guardamos en "pos".
+                }
+            }
+            value = 999;                          //Reseteamos "value" para el siguiente número.
+            int a = result[i];                    //El número que vamos a ordenar tiene que ir en esta posición, pero esta posición tiene su propio valor.  
+                                                  //Así que guardamos este valor antes de sobreescribirlo.
+            result[i] = result[pos];              //Ahora sí que sobreescribimos el valor de esta posición con el que hemos concluído que va aquí.
+            result[pos] = a;                      //El número que hemos sobreescrito lo guardamos ahora en la posición en la que estaba el otro número.
+            System.out.println("Number " + i + " is equals to " + result[i]);
+        }
+    }
+}
