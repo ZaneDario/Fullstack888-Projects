@@ -30,8 +30,8 @@ public class Factorials {
     
     int CheckInteger(String text)        //CheckInteger está declarado como "int", así que al final del proceso tendrá un valor numérico entero.
     {
-        try
-        {
+        try                     //try se asegura de que el código que tiene dentro no vaya a dar ningún error. Si diera error, pasa a ejecutar lo que hay en "catch".
+        {                       //Si le obligas (utilizando Integer.parseInt) a transformar en "int" algo que no se puede, va a dar error.
                 return Integer.parseInt(text);      //Si lo que ha escrito el usuario es aceptable como valor "int", CheckInteger() tendrá ese valor.
         }
         catch(NumberFormatException ex) {
