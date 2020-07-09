@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Divisors {
+    Scanner s = new Scanner(System.in);
+    public static void main(String[] args) {
+        new Divisors().Check();
+    }
+
+    void Check()
+    {
+        System.out.println("Type a positive number.");
+        String text = s.next();
+        int num = CheckInteger(text);
+
+        if(num==0)
+            System.out.println("Zero can be divided by every single number.");
+        else
+        {
+            String[] digits = text.split("");
+            System.out.println("This number has "+ digits.length+ " digits.");
+            for(int i=1 ; i<=num;i++)
+            {
+                if(num%i==0)
+                    System.out.println(num + " is divisible by " + i +".");
+            }
+        }
+    }
+
+    public int CheckInteger(String input)
+    {
+        try{
+            int num = Integer.parseInt(input);
+            if(num < 0)
+            {
+                System.out.println("Introduce a positive Integer, please.");
+                return CheckInteger(s.next());
+            }
+            else
+                return num;
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Introduce an Integer, please.");
+            return CheckInteger(s.next());
+        }
+    }
+}
