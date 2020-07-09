@@ -26,10 +26,10 @@ public class Addition {
     void KeepAdding()       //KeepAdding() está declarado como void, así que no necesita transformarse en nada.
     {
         System.out.println("I can keep working. Type a new number or type STOP to close this app.");
-        number = CheckInteger();        //Pedimos una nueva entrada por consola y vamos a asegurarnos de que es un entero o la palabra STOP.
-        result += number;               //Si se cumple, seguimos acumulando sumas.
+        number = CheckInteger();                                //Pedimos una nueva entrada por consola y vamos a asegurarnos de que es un entero o la palabra STOP.
+        result += number;                                           //Si se cumple, seguimos acumulando sumas.
         System.out.println("The new result is " +result);
-        KeepAdding();                           //Y repetimos este proceso.
+        KeepAdding();                                           //Y repetimos este proceso.
     }
 
     int CheckInteger()      //CheckInteger está declarado como un "int", así que al final del proceso tendrá que tener valor de "int"
