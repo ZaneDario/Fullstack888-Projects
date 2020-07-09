@@ -26,7 +26,7 @@ public class ProductBySum {
             result += num1;                         //No nos interesa cambiar el valor de num1. 
         }
 
-        if(num1>0 && num2<0)                         //Si hay uno positivo y otro negativo, sabemos que num1 ha sido el positivo, y que ha estado sumando,
+        if(num1>0 && num2<0 || (num1>0 && num2<0))    //Si hay uno positivo y otro negativo, sabemos que num1 ha sido el positivo, y que ha estado sumando,
             result *= -1;                            //así que multiplicamos el resulatado por (-1), puesto que "menos por más = menos".
         else
             result = Math.abs(result);      //En en el caso de que los dos sean o positivos o negativos el resultado será positivo, así que le metemos un Math.abs y 
