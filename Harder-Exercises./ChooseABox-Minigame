@@ -50,4 +50,4 @@ public class ChooseABox {
             return CheckInteger(s.nextLine());                          //Hasta que CheckInteger() no se transforme en un "int", vamos a seguir llamando a este método.
         }                                                               //Volvemos arriba.
     }
-}
+} 
