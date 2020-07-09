@@ -12,7 +12,7 @@ public class ProductBySum {
         System.out.println("Introduce two numbers bigger than 0.");   
         int num1 = CheckInteger(s.next());              //Cuando el usuario introduzca un número, vamos a ir al apartado "CheckInteger()" para validarlo.
         int num2 = CheckInteger(s.next());              //Tal y como he escrito "CheckInteger()" este permite que le añadas un texto entre los paréntesis. Vamos abajo a verlo.
-        int result = 0;                                 //Ahora num1 y num2 tendrán el valor número con el que ha terminado cada CheckInteger(). :)
+        int result = 0;                                 //Ahora num1 y num2 tendrán el valor numérico con el que ha terminado cada CheckInteger(). :)
 
         if(num1 < num2)                 //Queremos que num2 siempre sea el valor más pequeño, porque es el que controla cuántas veces se va a repetir
         {                              //el bucle, y queremos que sean las menos posibles. Así que si num2 es mayor, les intercambiamos el valor.                     
