@@ -1,38 +1,42 @@
 import java.util.Scanner;
 
 public class Factorials {
-    Scanner s = new Scanner(System.in);
-    int result = 1;
+    Scanner s = new Scanner(System.in);     //Damos nombre al escaner.
+    int result = 1;                         //El resultado lo inicializamos en , por motivos matemáticos.
 
     public static void main(String[] args) {
-        new Factorials().Calculate();
+        new Factorials().Calculate();               //Le decimos que ejecute el código dentro de "Calculate()".
     }
 
     void Calculate()
     {
-        System.out.println("Type an Integer.");
-        int number = CheckInteger(s.nextLine());
-        Factorial(number);
-    }
-    void Factorial(int num)
-    {
-        for(int i = 1; i < num; i++)
+        System.out.println("Type an Integer.");     
+        int number = CheckInteger(s.nextLine());  //Leemos lo que el usuario introduce en la consola y nos aseguramos de que sea un número entero.
+        Factorial(number);                          //Una vez que sabemos que "number" es un entero, ejecutamos el código dentro de "Factorial()", y le enviamos el valor
+    }                                               //de number. Se lo enviamos poniéndolo entre paréntesis.
+    
+    void Factorial(int num)                 //"Factorial()" está declarado como "void", así que al final del proceso seguirá sin tener valor,
+    {                                       //pero entre paréntesis le hemos dicho que puede admitir números enteros que nosotros le pasemos cuando lo llamamos.
+                                            //El "int" que hemos declarado aquí y el que le pasemos al llamarlo no tiene porque tener el mismo nombre. 
+                                            //pero este al que hemos llamado "num" adquirirá el valor del otro que le hayamos pasado, y ahora al escribir "num" tenemos ese valor.
+                                            
+        for(int i = 1; i < num; i++)        //Este bucle va a ir de uno en uno hasta llegar al número que le pasemos.
         {
-            result = i*result;
+            result = i*result;              //"result" va a acumular la multiplicación de cada número.
         }
 
-        System.out.println("Factorial of " + num + " is " + result);
+        System.out.println("Factorial of " + num + " is " + result);        //Imprimimos el resultado.
     }
     
-    public int CheckInteger(String text)
+    int CheckInteger(String text)        //CheckInteger está declarado como "int", así que al final del proceso tendrá un valor numérico entero.
     {
         try
         {
-                return Integer.parseInt(text);
+                return Integer.parseInt(text);      //Si lo que ha escrito el usuario es aceptable como valor "int", CheckInteger() tendrá ese valor.
         }
         catch(NumberFormatException ex) {
             System.out.println("Introduce an Integer, please.");
-            return CheckInteger(s.nextLine());
+            return CheckInteger(s.nextLine());                      //Si no es aceptable, vamos a pedir otro número, hasta que CheckInteger() pueda adquirir el valor de un "int".
         }
     }
 }
