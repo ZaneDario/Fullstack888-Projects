@@ -3,44 +3,51 @@ import java.util.Scanner;
 
 public class ChooseABox {
 
-    Scanner s = new Scanner(System.in);
-    Random r = new Random();
-    int[] boxes = {0,0,0};
-
+    Scanner s = new Scanner(System.in);     //Damos nombre al escaner.
+    Random r = new Random();                //Damos nombre a lo que nos crea números aleatorios.
+    int[] boxes = {0,0,0};                  //Creamos un Array, y le decimos que sus tres primeros valores van a ser .
+                                            //boxes[0] es 0, boxes[1] es 0, y boxes[2] es 0.
     public static void main(String[] args) {
-        new ChooseABox().Play();
+        new ChooseABox().Play();            //Le decimos que ejecute el código dentro de "Play()".
     }
 
     void Play()
     {
-       int n = r.nextInt(3);
-       boxes[n] = 1;
+       int n = r.nextInt(3);                //Creamos un valor aleatorio entre 0 y 2.
+       boxes[n] = 1;                        //A una caja aleatoria le damos el valor uno, y será la que tiene el premio.
 
         System.out.println("Choose a box: 1, 2 or 3. Good Luck.");
-        int choice = CheckInteger(s.nextLine());
+        int choice = CheckInteger(s.nextLine());                            //Pedimos un número entre 1 y 3 y comprobamos que nos hayan hecho caso.
+                                                                            //Vamos abajo a ver el método "CheckInteger()".
+        if(boxes[choice-1] == 1)
+            System.out.println("You got the prize!!");                     //Comprobamos el valor de la caja que nos diga el usuario. SI es uno, gana.
+        else                                                    
+            System.out.println("I'm sorry. That box is empty...");          //Si el valor no es 1, significa que es una caja que contiene el valor 0 que le 
+                                                                            //hemos puesto al comienzo. El usuario pierde.
+        System.out.println("Do you wanna try again?   Y/N   ");         
+        String answer = s.next();                                           //Le preguntamos si quiere volver a jugar y guardamos si respuesta.
 
-        if(boxes[choice] == 1)
-            System.out.println("You got the prize!!");
-        else
-            System.out.println("I'm sorry. That box is empty...");
-
-        System.out.println("Do you wanna try again?   Y/N   ");
-        String answer = s.next();
-
-        if(answer.equals("Y") || answer.equals("y"))
+        if(answer.equals("Y") || answer.equals("y"))                        //Si la respuesta es una "Y" (yes), volvemos a empezar este mismo método.
             Play();
 
     }
 
-    public int CheckInteger(String text)
-    {
+    int CheckInteger(String text)    //Para llamar a este método necesitamos que al nombrarlo le introduzcan una String
+    {                                       //entre paréntesis, que será lo que el usuario escriba en la consola.
         try
         {
-            return Integer.parseInt(text);
-        }
+            int num = Integer.parseInt(text);       //Comprobar si lo que ha escrito puede transformarse a "int" y si se puede hay que comprobar si ha escrito 1, 2 o 3.
+            if(num == 1 || num == 2 || num == 3)    //Si se cumple todo CheckInteger() pasa a tener este valor.
+                return num;                         //Fijaos que este método está declarado como "int" delante de su nombre.
+            else
+            {
+                System.out.println("You have three boxes: 1, 2 and 3.");    //Si es "int" pero no es ni 1, ni 2, ni 3, le decimos que escriba otro número.
+                return CheckInteger(s.nextLine());                          //Estamos forzando a CheckInteger a que se transforme en un entero entre 1, 2 y 3.
+            } 
+        }                                       
         catch(NumberFormatException ex) {
-            System.out.println("You have three boxes: 1, 2 and 3.");
-            return CheckInteger(s.nextLine());
-        }
+            System.out.println("You have three boxes: 1, 2 and 3.");     //Si al intentar convertirlo a "int" nos da error, le decimos que pruebe otra vez.
+            return CheckInteger(s.nextLine());                          //Hasta que CheckInteger() no se transforme en un "int", vamos a seguir llamando a este método.
+        }                                                               //Volvemos arriba.
     }
 }
