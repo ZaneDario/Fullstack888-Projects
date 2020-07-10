@@ -11,18 +11,20 @@ public class Diamond {
     {
         System.out.println("Diamond dimensions?");      
         int num = s.nextInt();                          //Pedimos las dimensiones del diamante y las guardamos sin ninguna comprobación previa, porque me daba pereza hacerlas.
+                                                        //(Deberíamos asegurarnos de que nos dan un número entero y no otra cosa).
+                                                        
+        for(int i = 0; i < num*2; i++)                  //Si queremos que el número dado por el usuario sea la distancia desde arriba hasta el centro del diamante, sus 
+        {                                               //dimensiones reales habrá que multiplicarlas por dos.
+        
+                int rest = i -num;                      //Esta variable la usaremos cuando queramos crear la parte de abajo del diamante.
 
-        for(int i = 0; i < num*2; i++)                  
-        {
-                int rest = i -num;
-
-                for(int j = 1; j < num*2; j++)
+                for(int j = 1; j < num*2; j++)          //Si nos introducen el número 4, por ejemplo, el diamante tendrá que tener 7 carácteres por línea, y 7 capas.
                 {
-                    if((j>(num-i) && j<num+i && i <= num)
-                            || (j>(i-num) && j<(num*2)-rest && i > num))
-                        System.out.print("#");
+                    if((j>(num-i) && j<num+i && i <= num)                    //Con estas condiciones creamos siempre una # en la parte del centro, y vamos creando más
+                            || (j>(i-num) && j<(num*2)-rest && i > num))    //dependiendo de la capa en la que estemos. Cada capa que bajamos, añadimos una # más por la 
+                        System.out.print("#");                             //izquierda, y otra por la derecha.
                     else
-                        System.out.print(" ");
+                        System.out.print(" ");                           //Si no toca #, dejamos espacio.
                 }
                 System.out.println();
         }
