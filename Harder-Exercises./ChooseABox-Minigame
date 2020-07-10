@@ -1,3 +1,6 @@
+//Queremos crear un programa en donde el usuario introduzca un número del 1 al 3, como si eligiera entre una de tres cajas, y solo una tuviera premio.
+//Vamos a utilizar números generados aleatoriamente para decicir qué caja contiene el premio y que sea distinto cada vez que arranque el programa.
+
 import java.util.Random;
 import java.util.Scanner;
 
