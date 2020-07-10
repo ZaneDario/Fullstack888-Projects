@@ -1,3 +1,5 @@
+//Queremos un programa que te calcule el factorial de un número, y como es muy fácil vamos a complicarlo un poco añadiendo un par de métodos y de comprobaciones.
+
 import java.util.Scanner;
 
 public class Factorials {
