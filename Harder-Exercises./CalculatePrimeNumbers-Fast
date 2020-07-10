@@ -1,3 +1,7 @@
+//Vamos a calcular números primos de manera rápida. Cada número primo que obtengamos, lo guardaremos en una lista, y así
+//solo tenemos que probar a dividir los siguientes números por los que hay ya en la lista, para saber si son o no primos.
+//De esta manera nos evitamos un montón de comprobaciones sin sentido.
+
 import java.util.ArrayList;     //Java nos pide importar esto al intentar crear una lisgta, así que le hacemos caso,
 import java.lang.Integer;       //que java es muy sabio.
 
