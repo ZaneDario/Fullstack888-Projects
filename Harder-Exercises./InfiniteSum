@@ -1,3 +1,5 @@
+//Queremos un programa que pregunte números y cada número que el usuario introduzca, lo va sumando a los anteriores y mostrando lo que lleva acumulado de suma.
+
 import java.util.Scanner;
 
 public class Addition {
