@@ -1,3 +1,6 @@
+//Si alguien gana entre 0 y 20k, no paga impuestos. Entre 20k y 40k paga un 10% de lo que gane. Si gana entre 40k y 60k tiene que pagar todo lo que equivale al grupo
+//anterior, más un 20% de lo que le sobre en su grupo. Si gana entre 60k en adelante tiene que pagar un 30%.
+
 import java.util.Scanner;
 
 public class Taxes {
