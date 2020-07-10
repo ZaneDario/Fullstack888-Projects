@@ -1,55 +1,68 @@
+//Queremos que el usuario, en una misma línea de la Consola, introduzca tres números, separados cada uno por un espacio, y nosotros calculamos el volumen de un
+//prisma con esas dimensiones y le mostramos el resultado.
+
 import java.util.Scanner;
 
 public class CalculateVolumes {
-    Scanner s = new Scanner(System.in);
-    String[] numbersAsText = new String[3];
-    int[] numbersAsInt = new int[3];
+    Scanner s = new Scanner(System.in);         //Damos nombre al escaner.
+    String[] numbersAsText = new String[3];     //Creamos un Array que nos va a guardar como texto y por separado cada número que el usurio introduzca.
+    int[] numbersAsInt = new int[3];            //Este Array guardará los números una vez hayan sido transformados de "String" a "int".
 
     public static void main(String[] args)
     {
         System.out.println("Give me three numbers separated with spaces (e.g. 7 12 9) to get the volume of a prism in cm.");
-        new CalculateVolumes().StartNewCalculation();
+        new CalculateVolumes().StartNewCalculation();                        //Aquí le decimos que ejecute el código dentro de "StartNewCalculation()".
     }
     
     void StartNewCalculation()
     {
-        CheckInputs(s.nextLine());
+        CheckInputs(s.nextLine());  //Aquí llamamos al escaner, y nada más el usuario pulse Enter, ese valor se va a transmitir al método "CheckInputs", vamos abajo a verlo. Línea 26.
 
-        TextToInt(numbersAsText);
+        TextToInt(numbersAsText);   //Si ya tenemos tres datos nos toca intentar convertirlos a número entero. A este método tiene que pasarle dentro de los paréntesis 
+                                    //un Array de Strings. numbersAsText lo es, así que vamos a la línea 44 a ver cómo funciona.
 
-        PrismVolume(numbersAsInt[0], numbersAsInt[1], numbersAsInt[2]);
-    }
+        PrismVolume(numbersAsInt[0], numbersAsInt[1], numbersAsInt[2]);     //Si todo está en orden, utilizamos el método PrismVolume, al que le tienes que pasar tres "int."
+    }                                                                       //Vamos a la línea 62.
 
-    void CheckInputs(String text)
-    {
-        numbersAsText = text.split(" ");
+    void CheckInputs(String text)   //Este método necesita que le pasen una String entre paréntesis, y una vez reciba el dato, nos podremos referir a él con la
+    {                                       //palabra "text", que es el nombre que he decidido darle.
+    
+        numbersAsText = text.split(" ");    //"split" es algo que te ofrece java. Puedes usarlo para cortar cadenas de texto con el criterio que tú quieras.
+                                            //El criterio va dentro del paréntesis, y entre comillas. En este caso, va a cortar la cadena de texto cada vez que haya
+                                            //un espacio. Si el usuario introduce algo como "10 24 8", nos va a crear tres cadenas de texto diferentes: "10" "24" y "8".
+                                            //Por eso habíamos declarado antes "numberAsText" como un Array, porque lo íbamos a utilizar para guardar tres String diferentes.
+                                            // Algo como .split(".") podríamos usarlo para separar un String cada vez que haya un punto, y así agrupar frases.
 
-        while(numbersAsText.length != 3)
+        if(numbersAsText.length != 3)       //Si tras cortar la información no hemos obtenido tres String diferentes, le decimos al usuario que nos de datos válidos.
         {
             System.out.println("Incorrect input format. You need three numbers. (e.g. 7 12 9)");
-            CheckInputs(s.nextLine());
+            
+            CheckInputs(s.nextLine());      //Este método se va a llamar a sí mismo mientras no nos de tres números separados por espacios. Vamos a volver arriba. Línea 21.
         }
     }
 
-    void TextToInt(String[] text)
+    void TextToInt(String[] text)  //Aquí vemos que acepta un Array de Strings, y que cuando nos pasen uno, nos vamos a referir a él con la palabra "text".
     {
-        try
-        {
-            for (int i = 0; i < text.length; i++)
+        try                          //Un "try" nos sirve para comprobar que el programa no da error mientras ejecuta lo que hay dentro.
+        {                          //Si surgiera algún error, en vez de parar el programa, java se va a olvidar del "try" y va a ejecutar lo que haya en el "catch".
+        
+            for (int i = 0; i < text.length; i++)       //Queremos convertir cada uno de los tres datos que tenemos a "int".
             {
-                numbersAsInt[i] = Integer.parseInt(numbersAsText[i]);
+                numbersAsInt[i] = Integer.parseInt(numbersAsText[i]);   //Si nos han pasado algo que no se puede transformar a "int", va a dar error :)
             }
         }
-        catch(NumberFormatException ex) {
+        catch(NumberFormatException ex) {                               //Si da error, entra aquí.
+        
             System.out.println("Incorrect input format. Only Integers, please. (e.g. 7 12 9)");
-            StartNewCalculation();
-        }
-    }
+            
+            StartNewCalculation();             //Y aquí le decimos que empiece desde cero. (Esto es peligroso, porque se acumulan las peticiones que le hacemos   
+        }                                     //de que empiece de nuevo, y cuando una sea válida, va a escupir los demás resultados, pero este día no me apetecía pensar mucho más).                        
+    }                                           //volvemos a la línea 24.
 
-    void PrismVolume(int x, int y, int z)
+    void PrismVolume(int x, int y, int z)   //Aquí vemos que esos tres "int" que le pasemos a partir de ahora los llamaremos x, y, z.
     {
-        int volume = x*y*z;
-        System.out.println("Volume = "+ volume +"cm");
-        System.exit(0);
-    }
+        int volume = x*y*z;                                         //Los multiplicamos para obtener el volumen.
+        System.out.println("Volume = "+ volume +"cm");          //Imprimimos el volumen.
+        System.exit(0);                                      //Paramos rápidamente la aplicación antes de que el programa escupa todos los resultados que tenía 
+    }                                                        //acumulados con datos no-válidos, y así conseguimos tener un código guarrísimo con un resultado excelente. ;)
 }
