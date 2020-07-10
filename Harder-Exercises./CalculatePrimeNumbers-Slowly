@@ -1,3 +1,6 @@
+//Aplicación que te calcula números primos de manera muy sencilla: Coge un número y prueba a dividirlos por todos los que son menores que él.
+//Si puede dividirlo por alguno, sabemos que no será primo, y si ocurre lo contrario, será primo, así que lo mostrará en pantalla.
+
 public class PrimeNumbers {
 
     boolean prime = true;    //Un número es primo hasta que se demuestre lo contrario.
