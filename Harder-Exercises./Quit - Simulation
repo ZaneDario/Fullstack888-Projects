@@ -1,3 +1,6 @@
+//It seems really difficult to choose the highest value among 200, 1000 or 10000 cards, but in this simulation you can see how you get a 37% chance of winning
+//this game just aplying a simple rule related with number e.
+
 import java.util.Random;
 import java.util.Scanner;
 
