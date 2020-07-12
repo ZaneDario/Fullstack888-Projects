@@ -1,0 +1,73 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class QuitGameSimulation {
+    Scanner s = new Scanner(System.in);
+    Random r = new Random();
+    int numberOfCards = 200;
+    int max = 999999999;
+    int winningPos;
+    int wins = 0;
+
+
+    public static void main(String[] args) {
+        new QuitGameSimulation().Simulate();
+    }
+
+    void Simulate()
+    {
+        int tries = 1000000;
+        for (int i = 0; i < tries; i++) {
+            Play();
+        }
+
+        System.out.println("You win " + ((float)wins/tries*100)+"%");
+    }
+
+
+    void Play()
+    {
+        int[] cards = new int[numberOfCards];
+        int numbersOfECards = (int)((1/Math.E)*numberOfCards);
+        int[] eCards = new int[numbersOfECards];
+        int aux = 0;
+
+        for (int i = 0; i < cards.length; i++) {
+
+            cards[i] = r.nextInt(max+1);
+
+            if(cards[i] > aux)
+            {
+                winningPos = i;
+                aux = cards[i];
+            }
+
+            if(i < eCards.length)
+                eCards[i] = cards[i];
+        }
+
+        int selectedPos = 9999;
+
+        int ePos = 0;
+        int eAux = 0;
+        for (int i = 0; i < eCards.length; i++) {
+            if(eCards[i] > eAux)
+            {
+                ePos = i;
+                eAux = eCards[i];
+            }
+        }
+
+        for (int i = numbersOfECards; i < cards.length; i++) {
+
+            if(eCards[ePos] < cards[i])
+            {
+                selectedPos = i;
+                break;
+            }
+        }
+
+        if (selectedPos == winningPos)
+            wins++;
+    }
+}
