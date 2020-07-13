@@ -1,0 +1,36 @@
+import java.util.Random;
+
+public class MasterMind {
+    Random r = new Random();
+
+    public static void main(String[] args) {
+        new MasterMind().Play();
+    }
+
+    void Play()
+    {
+        int[] numbers1 = new int[100];
+        int[] numbers2 = new int[100];
+        int comunN = 0;
+
+        for (int i = 0; i < numbers1.length; i++) {
+            numbers1[i] = r.nextInt(100);
+            numbers2[i] = r.nextInt(100);
+        }
+
+        for (int i = 0; i < numbers1.length; i++) {
+            for (int j = 0; j < numbers2.length; j++) {
+
+                if(numbers1[i] == numbers2[j] && i == j)
+                    System.out.println(numbers1[i] + " is the same number in both Arrays, in pos " + i);
+                else if(numbers1[i] == numbers2[j])
+                {
+                    comunN++;
+                    System.out.println(numbers1[i] + " is repeated.");
+                }
+            }
+        }
+        System.out.println(comunN +" numbers repeated.");
+
+    }
+}
