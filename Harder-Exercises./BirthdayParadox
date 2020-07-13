@@ -1,0 +1,54 @@
+//En un grupo de 100 personas, es matemáticamente imposible que no haya dos que no compartan cumpleaños.
+//Con este programa se calcula esta probabilidad dependiendo de las personas que pongas. 
+//Si sois 25 personas, la probabilidad de que dos compartan cumpleaños es de un 50%. Es una paradoja porque para nuestro cerebro suena realmente extraño.
+
+import java.util.Random;
+
+public class BirthdayParadox {
+
+    Random r = new Random();      //Damos nombre a lo que va a crear números aleatorios.
+    int nPeople = 100;          //Le decimos cuántas personas queremos en el grupo.
+    boolean hasSucceeded= false;    //Usaremos esto para comprobar en qué grupos se cumple, porque crearemos muchísimos grupos de ese número de personas.
+    int success = 0;                //Por cada grupo en el que se cumpla, sumamamos 1, para luego comparar.
+
+    public static void main(String[] args) {
+        new BirthdayParadox().Play();         //Le decimos que ejecute el código dentro de "Play()".
+    }
+
+    void Play()
+    {
+        int tries = 1000000;                    //¿Cuántos grupos vamos a simular? En este caso, un millón.
+        for (int i = 0; i < tries; i++) {
+            StartSimulation();              //Por cada intento, le decimos que ejecute otra vez el código dentro de "StartSimulation()". Vamos a la línea 29.
+        }
+
+        System.out.println("Among " +nPeople+" people, in " + ((float)success/tries*100)+"% of cases there at least two" +    //Victorias entre intentos nos da el
+                " of them who shared birthday.");                                                                           //porcentaje de veces que se cumple esto. FIN.
+    }
+
+    void StartSimulation()
+    {
+        int[] people = new int[nPeople];      //Creamos un grupo de personas del tamaño que hayamos dicho.
+
+        for (int i = 0; i < people.length; i++) {
+            people[i] = r.nextInt(366);             //A cada una le damos un día aleatorio para cumplir años.
+        }
+
+        for (int i = 0; i < people.length; i++) {
+            for (int j = 0; j < people.length; j++) {   //Comparamos cada persona con las demás del grupo.
+                if(people[i] == people[j] && i != j)      
+                {                                         //Si algún día de cumpleaños coincide y no son la misma persona
+                    hasSucceeded = true;                  //ya sabemos que en este grupo se ha cumplido nuestra teoría.
+                    break;                      //Terminamos el bucle.
+                }
+            }
+
+            if(hasSucceeded)        //Si ya se ha cumplido en este grupo
+            {
+                success++;            //sumamos una victoria
+                break;                //y terminamos también este bucle.
+            }
+        }
+        hasSucceeded = false;         //Reseteamos esto para el siguiente grupo. Volvemos a la línea 25.
+    }
+}
