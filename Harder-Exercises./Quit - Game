@@ -1,62 +1,70 @@
-//In this game you have several face down cards, each one with different values.
-//You can flip up these cards, in order, and you will choose the last one flipped up.
-//The case is: you will have some cards flipped up, and you will be able to see their value, but you are not allowed to
-//choose these cards as your answer, and the goals of the game is to stop flipping cards in the one with the highest
-//value.
+//En este juego tiene 200, 1000, 100000 o el número de cartas que tú quieras, boca abajo, y cada una tiene un número escrito en ella. 
+//Puedes ir dándoles la vuelta, y ver sus valores, pero tendrás que elegir siempre como respuesta la última carta que hayas voletado.
+//Una carta volteada boca arriba ya no puede ser volteada hacia abajo. Tú tienes que decidir cuando dejar de dar la vuelta a las cartas, si el número te convence.
+//Esa carta será la que comprobemos si es la mayor de todas las que tengamos, y si lo es, ganas, sino, pierdes. 
+//Obviamente las cartas que ya están boca arriba, aunque contengan el valor más alto, ya no podrán ser elegidas, solo la última que hayas volteado.
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class TheQuitGame {
 
-    Scanner s = new Scanner(System.in);
-    Random r = new Random();
-    int numberOfCards = 20;
-    int max = 999999999;
-    int winningPos;
+    Scanner s = new Scanner(System.in);         //Damos nombre al escaner.
+    Random r = new Random();                //Damos nombre a lo que generará números aleatorios.
+    int numberOfCards = 20;             //Indicamos el número de elementos que vamos a tener.
+    int max = 999999999;                //Indicamos el mayor número aleatorio que generará.
+    int winningPos;                     //Aquí guardaremos en qué posición del Array está el valor más grande. Sabiendo su posición es muy fácil acceder al contenido.
+                                        //Si guardáramos el contenido y no la posición, luego sería más difícil acceder a esta.
 
     public static void main(String[] args) {
-        new TheQuitGame().Play();
+        new TheQuitGame().Play();               //Le decimos que ejecute el código dentro de "Play()".
     }
 
     void Play()
     {
-        int[] cards = new int[numberOfCards];
+        int[] cards = new int[numberOfCards];           //El Array "cards" será del tamaño que le hayamos dicho arriba.
 
-        int aux = 0;
+        int aux = 0;                                    //Vamos a necesitar un valor auxiliar para guardar el valor más alto hasta el momento y poder compararlo
+                                                        //con los siguientes.
 
         for (int i = 0; i < cards.length; i++) {
 
             int f = r.nextInt(max+1);
             int s = r.nextInt(max+1);
-            cards[i] = Math.abs( f-s );
+            cards[i] = Math.abs( f-s );                 //Estas tres líneas son un intento mío de crear más aleatoriedad.
 
-            if(cards[i] > aux)
+            if(cards[i] > aux)                  //Aquí comparamos cada valor con el auxiliar.
             {
-                winningPos = i+1;
-                aux = cards[i];
-            }
+                winningPos = i+1;   //Si el valor es más grande que el auxiliar, guardamos la posición en la que lo hemos encontrado. 
+                                    //(Ese +1 es para luego expresarlo desde el 1º, y no desde el 0º.
+                aux = cards[i];         //Al auxiliar le damos el valor de este número puesto que hemos comprobado que por ahora es el más grande,
+            }                           //y seguiremos comparando respecto a este.
         }
 
         System.out.println("There are " + numberOfCards + " cards. \nType Y to flip the first card.");
-        CheckAnswer();
+        
+        CheckAnswer();            //Tras pedirle al usuario que nos diga si quiere seguir volteando cartas "Y" o no "N", ejecutamos el código dentro de "CheckAnswer()"
+                                  //para asegurarnos de que nos ha dado una respuesta válida. Vamos a verlo a la línea 88.           
 
-        int selectedPos = 9999;
+        int selectedPos = 999;         //Aquí guardaremos la posición en la que el usuario se detenga. Le doy un valor cualquiera.
 
         for (int i = 0; i < cards.length; i++) {
-            System.out.println("This " + (i+1) + SetPrefix(i+1) + " card contains the value " + cards[i] +
-                    ", with " +  String.valueOf(cards[i]).length() + " digits.");
-            System.out.println("Dou you want to turn over one more card?    (Y/N) ? ");
-            String answer = CheckAnswer();
+        
+            System.out.println("This " + (i+1) + SetPrefix(i+1) + " card contains the value " + cards[i] +      //Vamos a la línea 77 a ver "SetPrefix".
+                    ", with " +  String.valueOf(cards[i]).length() + " digits.");               //Mostramos lo que vale su carta, y las que lleva levantadas.
+                                                                                      //String.valueOf nos lo ofrece java, y transforma números en texto. Así contamos sus dígitos.
+                    
+            System.out.println("Dou you want to turn over one more card?    (Y/N) ? ");     //Pedimos otra respuesta.
+            String answer = CheckAnswer();                                                  //De nuevo comprobamos su respuesta.
 
-            if(answer.equals("N"))
+            if(answer.equals("N") || i == cards.length-1)       //Cuando responda "N" o llegue a la última carta, guardamos su elección y salimos del bucle.
             {
                 selectedPos = i+1;
                 break;
             }
         }
 
-        if (selectedPos == winningPos)
+        if (selectedPos == winningPos)                  //Si su elección es la misma que la que sabemos que es la ganadora, gana. Si no, más suerte la próxima. FIN.
         {
             System.out.println("Congratulations!! The card you chose is the one with the highest value!!  YOU WIN ");
         }
@@ -66,31 +74,31 @@ public class TheQuitGame {
 
     }
 
-    String SetPrefix(int n)
-    {
+    String SetPrefix(int n)     //Esto nos va a devolver también un trozo de texto, y le tenemos que pasar un número para utilizarlo.
+    {                           //A ese número ahora lo llamamos "n".
         switch (n)
         {
-            case 1: return "st";
+            case 1: return "st";        //Depende del número, le damos y le decimos que devuelva un trozo de tetxo u otro.
             case 2: return "nd";
             case 3: return "rd";
             default: return "th";
         }
     }
 
-    String CheckAnswer()
+    String CheckAnswer()        //CheckAnswer está declarado como String, así que al final del código, esto tiene que ser equivalente a una String.
     {
-        String ans = s.next();
+        String ans = s.next();          //Guardamos la respuesta que nos den.
 
-        if(ans.equals("Y") || ans.equals("y")) {
-            return "Y";
+        if(ans.equals("Y") || ans.equals("y")) {        //Si la respuesta Y
+            return "Y";                                 //Con "return" le damos a este trozo de código el valor "Y", por lo que ya es una String :)
         }
-        else if (ans.equals("N") ||ans.equals("n")) {
-            return "N";
+        else if (ans.equals("N") ||ans.equals("n")) {           //Si la respuesta N
+            return "N";                                     //Con "return" le damos a este trozo de código el valor "Y", por lo que ya es una String :)
         }
         else
         {
-            System.out.println(ans + " is not a valid answer.");
-            return CheckAnswer();
-        }
+            System.out.println(ans + " is not a valid answer.");        //Si la respuesta no es ni "Y" ni "N"
+            return CheckAnswer();                                    //Vamos a darle a este trozo el código el valor que nos de este trozo de código al ejecutarlo de nuevo.
+        }                                                   //Así no dejamos al usuario avanzar hasta que responda algo de lo que tiene que responder. Volvemos a línea 46.
     }
 }
