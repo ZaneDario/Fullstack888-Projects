@@ -45,7 +45,7 @@ public class Hangman {
     void AskForALetter()
     {
         System.out.println("Which letter you think this word contains?");
-        char letter = CheckInput(s.next());
+        char letter = CheckInput(s.next().toLowerCase());
         CheckIfContained(letter);
     }
 
@@ -54,7 +54,7 @@ public class Hangman {
         if(l.length() > 1 || l.length() == 0)
         {
             System.out.println("You must introduce only one letter.");
-            return CheckInput(s.next());
+            return CheckInput(s.next().toLowerCase());
         }
         else
             return l.charAt(0);
@@ -81,7 +81,7 @@ public class Hangman {
                 won = true;
         }
         for (int i = 0; i < wordLetters.length; i++) {
-            System.out.print(hiddenLetters[i]);
+            System.out.print(hiddenLetters[i] + " ");
         }
         System.out.println();
 
@@ -112,3 +112,4 @@ public class Hangman {
         }
     }
 }
+
