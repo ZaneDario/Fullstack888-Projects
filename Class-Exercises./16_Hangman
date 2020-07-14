@@ -1,0 +1,114 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class Hangman {
+
+    String[] words = {"javascript", "tables", "chair", "café", "queue", "digimon"};
+
+    String word;
+    char[] wordLetters;
+    char[] hiddenLetters;
+
+    Scanner s = new Scanner(System.in);
+    Random r = new Random();
+
+    int lifes = 10;
+    boolean won = false;
+
+    public static void main(String[] args) {
+        new Hangman().Start();
+    }
+
+    void Start()
+    {
+        word = words[r.nextInt(words.length)];
+        wordLetters = new char[word.length()];
+        hiddenLetters = new char[word.length()];
+
+        System.out.println();
+        for (int i = 0; i < word.length(); i++) {
+            wordLetters[i] = word.charAt(i);
+            hiddenLetters[i] = '_';
+            System.out.print(hiddenLetters[i] + " ");
+        }
+        System.out.println();
+
+        while(lifes > 0 && won == false)
+        {
+            AskForALetter();
+        }
+
+        if(won)
+            System.out.println("WON!!!");
+    }
+
+    void AskForALetter()
+    {
+        System.out.println("Which letter you think this word contains?");
+        char letter = CheckInput(s.next());
+        CheckIfContained(letter);
+    }
+
+    char CheckInput(String l)
+    {
+        if(l.length() > 1 || l.length() == 0)
+        {
+            System.out.println("You must introduce only one letter.");
+            return CheckInput(s.next());
+        }
+        else
+            return l.charAt(0);
+    }
+
+    void CheckIfContained(char c)
+    {
+        boolean isContained = false;
+        int lettersRight = 0;
+
+        for (int i = 0; i < wordLetters.length; i++) {
+            if(wordLetters[i] == c || wordLetters[i] == CheckAccent(c))
+            {
+                hiddenLetters[i] = wordLetters[i];
+                isContained = true;
+            }
+
+            if(wordLetters[i] == hiddenLetters[i])
+            {
+                lettersRight++;
+            }
+
+            if(lettersRight == wordLetters.length)
+                won = true;
+        }
+        for (int i = 0; i < wordLetters.length; i++) {
+            System.out.print(hiddenLetters[i]);
+        }
+        System.out.println();
+
+        if(!isContained)
+        {
+            lifes--;
+            System.out.println("Try again. Lifes: "+ lifes);
+        }
+
+    }
+
+    char CheckAccent(char c)
+    {
+        switch (c)
+        {
+            case 'a':
+                return 'á';
+            case 'e':
+                return 'e';
+            case 'i':
+                return 'í';
+            case 'o':
+                return 'ó';
+            case 'u':
+                return 'ú';
+            default:
+                return ' ';
+        }
+    }
+}
