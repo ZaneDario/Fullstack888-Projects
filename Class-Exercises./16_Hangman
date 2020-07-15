@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 public class Hangman {
 
-    Scanner s = new Scanner(System.in);
-    Random r = new Random();
-    
     String[] words = {"javascript", "tables", "chair", "café", "queue", "digimon"};
-
+    
     char[] wordLetters;
     char[] hiddenLetters;
+
+    Scanner s = new Scanner(System.in);
+    Random r = new Random();
 
     int lifes = 10;
     boolean won = false;
@@ -20,7 +20,6 @@ public class Hangman {
 
     void Start()
     {
-    
         String word = words[r.nextInt(words.length)];
         wordLetters = new char[word.length()];
         hiddenLetters = new char[word.length()];
@@ -39,7 +38,7 @@ public class Hangman {
         }
 
         if(won)
-            System.out.println("YOU WON!!!");
+            System.out.println("WON!!!");
     }
 
     void AskForALetter()
@@ -80,17 +79,17 @@ public class Hangman {
             if(lettersRight == wordLetters.length)
                 won = true;
         }
-        for (int i = 0; i < wordLetters.length; i++) {
-            System.out.print(hiddenLetters[i] + " ");
-        }
-        System.out.println();
 
         if(!isContained)
         {
             lifes--;
-            System.out.println("Try it again. Lifes: "+ lifes);
+            Draw(lifes);
+            System.out.println("Try again. Lifes: "+ lifes);
         }
-
+        System.out.println();
+        for (int i = 0; i < wordLetters.length; i++) {
+            System.out.print(hiddenLetters[i] + " ");
+        }
     }
 
     char CheckAccent(char c)
@@ -100,7 +99,7 @@ public class Hangman {
             case 'a':
                 return 'á';
             case 'e':
-                return 'é';
+                return 'e';
             case 'i':
                 return 'í';
             case 'o':
@@ -111,5 +110,105 @@ public class Hangman {
                 return ' ';
         }
     }
-}
 
+    void Draw(int life)
+    {
+        switch (life)
+        {
+            case 9:
+                System.out.println(
+                        "            \n" +
+                        "            \n" +
+                        "            \n" +
+                        "            \n" +
+                        "            \n" +
+                        "   --------   ");
+                break;
+            case 8:
+                System.out.println(
+                        "            \n" +
+                        "    |       \n" +
+                        "    |       \n" +
+                        "    |       \n" +
+                        "    |       \n" +
+                        "   --------   ");
+                break;
+            case 7:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 6:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |    O  \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 5:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |    O  \n" +
+                                "    |    |  \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 4:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |    O  \n" +
+                                "    |   /|  \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 3:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |    O  \n" +
+                                "    |   /|) \n" +
+                                "    |       \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 2:
+                System.out.println(
+                        "    ______  \n" +
+                                "    |    O  \n" +
+                                "    |   /|) \n" +
+                                "    |   /   \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 1:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |    O  \n" +
+                                "    |   /|) \n" +
+                                "    |   /|  \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            case 0:
+                System.out.println(
+                                "    ______  \n" +
+                                "    |   xx  \n" +
+                                "    |   /|) \n" +
+                                "    |   /|  \n" +
+                                "    |       \n" +
+                                "   --------   ");
+                break;
+            default:
+                System.out.println("Are you cheating, my friend?");
+        }
+
+
+    }
+}
