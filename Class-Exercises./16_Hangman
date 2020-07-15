@@ -39,7 +39,7 @@ public class Hangman {
         }
 
         if(won)
-            System.out.println("WON!!!");
+            System.out.println("YOU WON!!!");
     }
 
     void AskForALetter()
@@ -88,7 +88,7 @@ public class Hangman {
         if(!isContained)
         {
             lifes--;
-            System.out.println("Try again. Lifes: "+ lifes);
+            System.out.println("Try it again. Lifes: "+ lifes);
         }
 
     }
