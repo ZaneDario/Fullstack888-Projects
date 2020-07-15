@@ -3,14 +3,13 @@ import java.util.Scanner;
 
 public class Hangman {
 
-    String[] words = {"javascript", "tables", "chair", "café", "queue", "digimon"};
-
-    String word;
-    char[] wordLetters;
-    char[] hiddenLetters;
-
     Scanner s = new Scanner(System.in);
     Random r = new Random();
+    
+    String[] words = {"javascript", "tables", "chair", "café", "queue", "digimon"};
+
+    char[] wordLetters;
+    char[] hiddenLetters;
 
     int lifes = 10;
     boolean won = false;
@@ -21,7 +20,8 @@ public class Hangman {
 
     void Start()
     {
-        word = words[r.nextInt(words.length)];
+    
+        String word = words[r.nextInt(words.length)];
         wordLetters = new char[word.length()];
         hiddenLetters = new char[word.length()];
 
