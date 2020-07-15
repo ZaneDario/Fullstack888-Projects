@@ -100,7 +100,7 @@ public class Hangman {
             case 'a':
                 return 'á';
             case 'e':
-                return 'e';
+                return 'é';
             case 'i':
                 return 'í';
             case 'o':
