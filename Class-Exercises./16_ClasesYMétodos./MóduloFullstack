@@ -1,0 +1,66 @@
+public class MóduloFullstack {
+
+    private Persona[] alumnos;
+    private Persona profesor;
+    private boolean esDeMañanas;
+
+    public MóduloFullstack(Persona profesor, Persona[] alumnos, boolean esDeMañanas) {
+        this.alumnos = alumnos;
+        this.profesor = profesor;
+        this.esDeMañanas = esDeMañanas;
+
+        EmpezarClases();
+    }
+
+    private void EmpezarClases()
+    {
+        TrabajoEnGrupo();
+        TrabajoIndividual();
+
+        Descansar();
+
+        TrabajoEnGrupo();
+    }
+
+    private void TrabajoIndividual()
+    {
+        float estrésProducido = 0.15f;
+
+        for (int i = 0; i < alumnos.length; i++) {
+            alumnos[i].Estresarse(estrésProducido);
+        }
+    }
+
+    private void TrabajoEnGrupo()
+    {
+        float estrésProducido = 0.1f;
+
+        for (int i = 0; i < alumnos.length; i++) {
+            alumnos[i].Estresarse(estrésProducido);
+        }
+    }
+
+    private void Descansar()
+    {
+        for (int i = 0; i < alumnos.length; i++) {
+            alumnos[i].BajarEstrés();
+        }
+    }
+
+    public String NombreDelMayor()
+    {
+        int edadMásAlta = 0;
+        int númeroEnLaLista = 0;
+
+        for (int i = 0; i < alumnos.length; i++) {
+
+            if(alumnos[i].MiEdad() > edadMásAlta)
+            {
+                edadMásAlta = alumnos[i].MiEdad();
+                númeroEnLaLista = i;
+            }
+        }
+
+        return alumnos[númeroEnLaLista].MiNombre();
+    }
+}
