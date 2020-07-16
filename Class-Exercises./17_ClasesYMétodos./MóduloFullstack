@@ -1,10 +1,12 @@
 public class MóduloFullstack {
 
+    private String nombreDelMódulo;
     private Persona[] alumnos;
     private Persona profesor;
     private boolean esDeMañanas;
 
-    public MóduloFullstack(Persona profesor, Persona[] alumnos, boolean esDeMañanas) {
+    public MóduloFullstack(String nombreDelMódulo, Persona profesor, Persona[] alumnos, boolean esDeMañanas) {
+        this.nombreDelMódulo = nombreDelMódulo;
         this.alumnos = alumnos;
         this.profesor = profesor;
         this.esDeMañanas = esDeMañanas;
@@ -62,5 +64,15 @@ public class MóduloFullstack {
         }
 
         return alumnos[númeroEnLaLista].MiNombre();
+    }
+
+    Persona ConocerAlProfesor()     //Otro getter.
+    {
+        return profesor;
+    }
+
+    String NombreDelMódulo()
+    {
+        return nombreDelMódulo;
     }
 }
