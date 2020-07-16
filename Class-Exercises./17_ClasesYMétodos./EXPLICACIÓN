@@ -1,0 +1,16 @@
+Un ejercicio sencillo donde se puede ver que un poco mejor, espero, cómo funcionan las clases.
+
+Sobre todo Persona y MóduloFullstack, pues hemos creado muchas personas, y las hemos guardado en un Array dentro de el único MóduloFullstack que hemos creado,
+y cada Persona tiene sus características propias, y aunque creemos dos Personas con todas sus características iguales es obvio que no serían la misma Persona.
+
+También es interesante ver que desde fuera yo jamás puedo acceder a los métodos/funciones/acciones de una Persona sin antes indicar a quién me estoy dirigiendo.
+(e.j.  profesor.MiNombre() , alumno[i].Estresarse() , etc...)
+
+Si modifico una variable de Persona desde el propio código que define a Persona, posiblemente lo cambie para todas las instancias de Persona.
+Lo dicho: desde fuera podemos crear un Array de Persona y entonces dirigirnos a una sola Persona de esa lista, para cambiar lo que queramos sin modificar al resto.
+
+También MóduloFullstack es una clase, así que aunque yo no lo haya hecho, se podrían crear muchos más módulos, cada uno con su nombre, su profesor, sus alumnos, etc...
+
+Main e InformesDeAlumnos también son clases, pero no tienen la estructrura típica de un objeto, puesto que les faltan variables que los definan.
+Crear instancias de estas clases no sería realmente útil entonces.
+
