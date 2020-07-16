@@ -1,0 +1,55 @@
+public class Persona {
+
+    private String nombre;
+    private int edad;
+    private float estrés;
+    private boolean esFumador;
+
+    public Persona(String nombre, int edad, float estrés, boolean esFumador) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.estrés = estrés;
+        this.esFumador = esFumador;
+    }
+
+    public String MiNombre()    //Esto es un getter.
+    {
+        return nombre;
+    }
+
+    public void CumplirAños() //Esto es un setter.
+    {
+        edad++;
+    }
+
+    public int MiEdad()   //Esto es un getter.
+    {
+        return edad;
+    }
+
+    public void Estresarse(float cantidadDeEstrés)  //Esto es otro getter.
+    {
+        estrés += cantidadDeEstrés;
+    }
+
+    public void BajarEstrés()
+    {
+        if(esFumador == true)
+        {
+            estrés  -= 0.2f;
+        }
+        else
+        {
+            estrés  -= 0.1f;
+        }
+
+        if(estrés < 0)
+            estrés = 0;
+    }
+
+    public String FraseDePresentación()
+    {
+        return "Hola, yo soy " + nombre + " ¿Qué tal estáis?";
+    }
+
+}
