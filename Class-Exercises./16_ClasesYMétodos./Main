@@ -1,0 +1,37 @@
+import java.util.Random;
+
+public class Main {
+
+    Random r = new Random();
+
+    public static void main(String[] args) {
+
+        Main esteCódigo = new Main();
+        InformesDeAlumnos datos = new InformesDeAlumnos();
+
+        esteCódigo.RegistrarMódulo(datos.nombres);
+    }
+
+    public void RegistrarMódulo(String[] nombres)
+    {
+        Persona profesor = new Persona("Francisco Luis", 35, 0.1f, true);
+
+        Persona[] grupo = new Persona[nombres.length];
+
+        for (int i = 0; i < nombres.length; i++) {
+
+            int años = r.nextInt(13) + 18;
+            boolean esFumador = i % 3 == 0 ? true : false;
+
+            Persona alumnoRegistrándose = new Persona(nombres[i], años, 0.0f, esFumador);
+            grupo[i] = alumnoRegistrándose;
+
+            System.out.println(alumnoRegistrándose.FraseDePresentación() + " Tengo " + alumnoRegistrándose.MiEdad() + " años.");
+        }
+
+        MóduloFullstack fundamentosProgramación = new MóduloFullstack(profesor, grupo, false);
+
+        System.out.println(fundamentosProgramación.NombreDelMayor() + " es el/la que más cerca ha estado de convivir con" +
+                "los dinosaurios.");
+    }
+}
