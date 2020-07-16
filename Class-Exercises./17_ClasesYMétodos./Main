@@ -29,7 +29,11 @@ public class Main {
             System.out.println(alumnoRegistrándose.FraseDePresentación() + " Tengo " + alumnoRegistrándose.MiEdad() + " años.");
         }
 
-        MóduloFullstack fundamentosProgramación = new MóduloFullstack(profesor, grupo, false);
+        MóduloFullstack fundamentosProgramación =
+                new MóduloFullstack("Fundamentos de la Programación", profesor, grupo, false);
+
+        System.out.println("Muy buenas, mi nombre es " + fundamentosProgramación.ConocerAlProfesor().MiNombre() +
+                " y seré quien os enseñe " + fundamentosProgramación.NombreDelMódulo() + " durante este mes.");
 
         System.out.println(fundamentosProgramación.NombreDelMayor() + " es el/la que más cerca ha estado de convivir con" +
                 "los dinosaurios.");
