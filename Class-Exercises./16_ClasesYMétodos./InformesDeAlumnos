@@ -1,0 +1,5 @@
+public class InformesDeAlumnos {
+
+        String[] nombres = {"Jose Carlos", "Eduardo Miguel", "Yan", "Alejandro", "María José", "José María",
+        "Julia", "Estefanía", "Fernanda", "Azucena", "Rosa", "Margarita", "Begonia", "Iris", "Violeta"};
+}
