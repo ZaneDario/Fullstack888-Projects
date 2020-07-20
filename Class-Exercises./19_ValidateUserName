@@ -1,0 +1,20 @@
+public class NameValidation {
+
+    public static void main(String[] args) {
+        NameValidation instance = new NameValidation();
+        System.out.println(instance.Validate("holasoygerman"));
+        System.out.println(instance.Validate("hola95as"));
+        System.out.println(instance.Validate("hola95]as"));
+    }
+
+    boolean Validate(String s)
+    {
+        char[] c = s.toCharArray();
+
+        for (int i = 0; i < c.length; i++) {
+            if(!((c[i] > 64 && c[i] < 91) || (c[i] > 96 && c[i] < 123)))
+                return false;
+        }
+        return true;
+    }
+}
