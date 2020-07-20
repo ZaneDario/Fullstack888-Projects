@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Palindrome {
+
+    Scanner s = new Scanner(System.in);
+    String sentence;
+    boolean isPalindrome = true;
+
+    public static void main(String[] args) {
+        new Palindrome().Start();
+    }
+
+    void Start()
+    {
+        System.out.println("Give me a sentence.");
+        sentence = s.nextLine().toLowerCase().replace(" ", "");
+
+
+        for (int i = 0; i < sentence.length(); i++) {
+            if(sentence.charAt(i) != sentence.charAt(sentence.length() - i - 1))
+            {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        if(isPalindrome)
+            System.out.println("It's!");
+        else
+            isPalindrome = true;
+    }
+}
