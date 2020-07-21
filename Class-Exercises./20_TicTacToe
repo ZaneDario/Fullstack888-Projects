@@ -1,0 +1,179 @@
+import java.util.Scanner;
+
+public class TicTacToe {
+
+    Scanner s = new Scanner(System.in);
+    char[][] board;
+    boolean xTurn = false;
+
+    public static void main(String[] args) {    //Le decimos que ejecute el código dentro de "Play()".
+        new TicTacToe().Play();
+    }
+
+    void Play()
+    {
+        DrawBoard();      //Que ejecute el código dentro de "DrawBoard()". Línea 33.
+
+        do {
+            System.out.println("Where do you want to put your piece? From 1 to " + board.length);
+            int x = CheckInput(s.next()) -1;
+            int y = CheckInput(s.next()) -1;      //Este método "CheckInput()" es muy similar al que acabamos de ver. Vamos a preguntar por un valor
+                                                  //hasta que nos introduzcan un número entero entre 1 y la longitud del tablero.
+            SetToken(x, y);       //Vamos a ver este método: línea 48.
+            xTurn = !xTurn;
+        }
+        while(!CheckIfWon());
+
+        if(!xTurn)
+            System.out.println("X wins");
+        else
+            System.out.println("O wins");
+    }
+
+    void DrawBoard()        //Aquí preguntamos un tamaño y dibujamos guiones a lo largo y ancho de ese tamaño.
+    {
+        System.out.println("Which board size you want?");
+        int size = CheckBoardSize(s.next());              //Esto es lo único un poco extraño de este método. Vamos a la línea 161.
+        board = new char[size][size];                   //Aquí no hay más que exxplicar. Vamos a la línea 17, que es por donde nos habíamos quedado.
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                board[i][j] = '-';
+                System.out.print(board[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    void SetToken(int x, int y)   //Le pasamos los dos inputs del usuario.
+    {
+        boolean isWrongInput = false;   //Esto será true si la casilla en la que nos dicen de colocar una pieza ya está ocupada.
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+
+                if(i == x && j == y)          //Vamos a recorrer y pintar todo el tablero, y cuando las coordenadas x,y coincidan, cambiaremos el guión por una X o una O, depende.
+                {
+                    if(board[i][j] != '-')  //Si justo el guión que vamos a cambiar por X o O ya es una pieza, devolvemos el turno a este jugador y le aviamos.
+                    {
+                        System.out.println("That tile is being used.");
+                        xTurn = !xTurn;
+                        isWrongInput = true;
+                        break;
+                    }
+                    else
+                    {
+                        if(xTurn)
+                            board[i][j] = 'X';
+                        else
+                            board[i][j] = 'O';
+                    }
+                }
+                System.out.print(board[i][j]);  
+            }
+
+            if(isWrongInput)
+                break;
+
+            System.out.println();
+        }
+    }
+
+    boolean CheckIfWon()
+    {
+        char lastCheck = ' ';
+
+        //Horizontal and Vertical
+        for (int a = 0; a < 2; a++) {   //One for rows, one for columns.
+
+            for (int i = 0; i < board.length; i++) {
+                int count = 0;
+
+                for (int j = 0; j < board.length ; j++) {
+
+                    int x = i;
+                    int y = j;
+
+                    if(a == 1)      //Check row / Check columns.
+                    {
+                        x = x - y;
+                        y = y + x;
+                        x = y - x;
+                    }
+
+                    if(y == 0 && a == 0 ||  x == 0 && a == 1)
+                        lastCheck = board[x][y];
+
+                    if(board[x][y] == lastCheck && board[x][y] != '-')
+                        count++;
+
+                    if(count == board.length)
+                        return true;
+                }
+            }
+        }
+
+        //Diagonal
+        if(board.length%2!=0){
+            for (int j = 0; j < 2; j++) {
+                int count = 0;
+
+                for (int i = 0; i < board.length; i++) {
+
+                    int middleTile = (board.length/2);
+
+                    if(i==0)
+                        lastCheck = board[middleTile][middleTile];
+
+                    if((board[i][i] == lastCheck && board[i][i] != '-' && j == 0) ||
+                            (j == 1 && board[i][board.length - i - 1] == lastCheck && board[i][board.length - i - 1] != '-'))
+                        count++;
+
+                    if(count == board.length)
+                        return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
+    public int CheckInput(String input)
+    {
+        try{
+            int i = Integer.parseInt(input);
+
+            if(i > 0 && i <= board.length)
+                return i;
+            else
+            {
+                System.out.println("Introduce a number: from 1 to " + board.length);
+                return CheckInput(s.next());
+            }
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Introduce an Integer, please.");
+            return CheckInput(s.next());
+        }
+    }
+
+    public int CheckBoardSize(String input) //Le pedimos una cadena de texto (cualquier cosa que el usuario introduzca en consola).
+    {
+        try{                                    //Try ejecuta su código siempre que no vaya a dar error. Si da error, nos olvidamos de esto y pasamos al catch.
+            int i = Integer.parseInt(input);  //Si intentamos convertir a "int" algo que no es "int" tendríamos un error y pasaríamos al catch.
+
+            if(i > 2)
+                return i;
+            else              //Tanto en este "else" como en el "catch" estamos llamando de nuevo a este método hasta que introduzcan un valor permitido.
+            {                                                                                         //Volvemos a la línea 37.
+                System.out.println("Introduce a positive number, from 3, please.");
+                return CheckBoardSize(s.next());
+            }
+        }
+        catch(NumberFormatException ex) {
+            System.out.println("Introduce an Integer, please.");
+            return CheckBoardSize(s.next());
+        }
+    }
+}
