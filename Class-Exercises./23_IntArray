@@ -1,0 +1,55 @@
+public class IntArray {
+
+    private int[] array;
+
+    public IntArray(int size)
+    {
+        array = new int[size];
+    }
+
+    public void add(int data)
+    {
+        int[] aux = new int[array.length + 1];
+
+        for (int i = 0; i < array.length; i++) {
+            aux[i] = array[i];
+        }
+
+        aux[aux.length-1] = data;
+
+        array = aux;
+    }
+
+    public void remove(int pos)
+    {
+        int[] aux = new int[array.length - 1];
+        int skip = 0;
+
+        for (int i = 0; i < aux.length; i++) {
+
+            if(i == pos)
+                skip = 1;
+
+            aux[i] = array[i + skip];
+        }
+        array = aux;
+    }
+
+    public int get(int pos)
+    {
+        if(array.length < pos)
+            return array[pos];
+        else
+            return -1;
+    }
+
+    public boolean isContained(int data)
+    {
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] == data)
+                return true;
+        }
+
+        return false;
+    }
+}
