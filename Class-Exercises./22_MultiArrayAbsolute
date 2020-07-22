@@ -1,0 +1,28 @@
+public class MultiArrayAbsolute {
+
+    public static void main(String[] args) {
+        new MultiArrayAbsolute().createMatrix();
+    }
+
+    void createMatrix()
+    {
+        int[][] matrix = new int[10][10];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = i*matrix.length + j;
+            }
+        }
+
+        drawMatrix(matrix);
+    }
+
+    void drawMatrix(int[][] matrix)
+    {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.printf(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+}
