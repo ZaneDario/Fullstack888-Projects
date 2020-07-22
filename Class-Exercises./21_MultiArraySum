@@ -1,0 +1,42 @@
+import java.util.Random;
+
+public class MultiArraySum {
+
+    int[][] matrix;
+    Random r = new Random();
+
+    public static void main(String[] args) {
+        new  MultiArraySum().createMatrix();
+    }
+
+    void createMatrix()
+    {
+        matrix = new int[4][15];
+        int[] lastRow = new int[15];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if(i < matrix.length -1)
+                {
+                    matrix[i][j] = r.nextInt(100);
+                    lastRow[j] += matrix[i][j];
+                }
+                else
+                    matrix[i][j] = lastRow[j];
+            }
+        }
+
+        draw();
+    }
+
+
+    void draw()
+    {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.printf(matrix[i][j] +"\t");
+            }
+            System.out.println();
+        }
+    }
+}
