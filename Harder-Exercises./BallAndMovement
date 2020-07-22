@@ -1,20 +1,20 @@
 public class Ball {
 
     private Vector2 position;
-    private Vector2 direction;
+    private float direction;
     private int speed;
 
-    public Ball(Vector2 position, Vector2 direction, int speed) {
+    public Ball(Vector2 position, int speed) {
 
         this.position = position;
-        this.direction = direction;
+        this.direction = getDirection(position.x, position.y);
         this.speed = speed;
     }
 
     public float[] move(int speed, Vector2 direction)
     {
-        float xSpeed = (float)(speed * Math.cos(direction.getDirectionInRadians(position.x, position.y)));
-        float ySpeed = (float)(speed * Math.sin(direction.getDirectionInRadians(position.x, position.y)));
+        float xSpeed = (float)(speed * Math.cos(Vector2.getDirectionInRadians(position.x, position.y)));
+        float ySpeed = (float)(speed * Math.sin(Vector2.getDirectionInRadians(position.x, position.y)));
         return new float[]{xSpeed, ySpeed};
     }
 
@@ -27,7 +27,7 @@ public class Ball {
 
     public float getDirection(int x, int y)
     {
-        return direction.getDirectionInGrades(position.x, position.y);
+        return Vector2.getDirectionInGrades(position.x, position.y);
     }
 }
 
@@ -42,19 +42,19 @@ class Vector2
         this.y = y;
     }
 
-    public float getDirectionInGrades(int x, int y)
+    public  static float getDirectionInGrades(int x, int y)
     {
         return (float)(Math.atan(y/x));
     }
 
-    public float getDirectionInRadians(int x, int y)
+    public static float getDirectionInRadians(int x, int y)
     {
         return (float)Math.toRadians(Math.atan(y/x));
     }
 
-    public float right(){return 0;}
-    public float up(){return 90;}
-    public float left(){return 180;}
-    public float down(){return 270;}
+    public static float right(){return 0;}
+    public static float up(){return 90;}
+    public static float left(){return 180;}
+    public static float down(){return 270;}
 
 }
