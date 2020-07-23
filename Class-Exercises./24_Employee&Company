@@ -1,0 +1,173 @@
+public class Employee {
+
+    private int id;
+    private String firstName;
+    private String lastName;
+    private float salary;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
+
+    public Employee(int id, String firstName, String lastName, float salary) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.salary = salary;
+    }
+
+    public float getAnnualSalary()
+    {
+        return salary*12;
+    }
+
+    public void raiseSalary(float percent)
+    {
+        salary += salary*percent/100;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                '}';
+    }
+}
+
+
+import java.util.*;
+
+public class Company {
+
+    private String name;
+    private List<Employee> employees;
+
+    public Company(String name, List<Employee> employees) {
+        this.name = name;
+        this.employees = employees;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void hire(Employee employee)
+    {
+        employees.add(employee);
+        employee.setId(employees.size()-1);
+    }
+
+    public void fire(int id)
+    {
+        for (Employee employee: employees)
+        {
+            if(employee.getId() == id)
+                employees.remove(employee);
+
+            for (int i = id; i < employees.size(); i++) {
+                employees.get(i).setId(i);
+            }
+        }
+    }
+
+    public Employee lookForEmployeeWithId(int id)
+    {
+        for (Employee employee: employees)
+        {
+            if(employee.getId() == id)
+                return employee;
+        }
+
+        return null;
+    }
+
+    public Employee lookForEmployeeInList(int index)
+    {
+        if(employees.size() > index)
+            return employees.get(index);
+        else
+            return null;
+    }
+
+    public List<Employee> getEmployees()
+    {
+        return employees;
+    }
+
+    public int size()
+    {
+        return employees.size();
+    }
+
+    public float totalSalary()
+    {
+        float sum = 0;
+        for (Employee employee: employees) {
+            sum += employee.getSalary();
+        }
+        return sum;
+    }
+
+    public float totalAnnualSalary()
+    {
+        float sum = 0;
+        for (Employee employee: employees) {
+            sum += employee.getAnnualSalary();
+        }
+        return sum;
+    }
+
+    public void globalRaise(int percentage)
+    {
+        for (Employee employee: employees) {
+            employee.raiseSalary(percentage);
+        }
+    }
+
+    public Employee[] lookForName(String name)
+    {
+        List<Employee> workersWithThisName = new ArrayList<>();
+        for (Employee employee: employees) {
+            if(employee.getFirstName().equals(name))
+                workersWithThisName.add(employee);
+        }
+
+        return workersWithThisName.toArray(Employee[]::new);
+    }
+}
